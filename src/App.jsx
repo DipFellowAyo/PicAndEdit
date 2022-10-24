@@ -3,7 +3,14 @@ import Nav from "./components/Navbar/Nav";
 import Button from "./components/Button/Button";
 import Footer from "./components/Footer/Footer";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Create from "./Pages/createPage";
+
+let routes = {
+	"/": () => <Home />,
+	"/create": () => <Create />,
+	"/dashboard": () => <Home />,
+};
 
 const App = () => {
 	return (
@@ -12,8 +19,11 @@ const App = () => {
 				<Nav />
 			</div>
 			<Routes>
-				<Route path="/" element={<Home />}></Route>
+				{Object.entries(routes).map(([path, Component]) => (
+					<Route path={path} element={<Component />} />
+				))}
 			</Routes>
+			<Footer />
 		</Router>
 	);
 };
@@ -48,7 +58,6 @@ const Home = () => {
 				<hr></hr>
 				<div style={{ height: "1000px" }}></div>
 			</section>
-			<Footer />
 		</>
 	);
 };
