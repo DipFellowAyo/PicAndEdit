@@ -18,7 +18,7 @@ const App = () => {
         />
         <div className='headerNote'>
           <h2>Start creating new exciting image transformations!</h2>
-          <h6>Say Toodles to expensive designers, poor-quality prints, and slow creative processes. With PicAndEdit, you can create new exciting image transformations, fantastic banner templates, customize it online, and print it on multiple social media platforms - no creative skills needed</h6>
+          <h6>Say toodles to expensive designers, poor-quality prints, and slow creative processes. With PicAndEdit, you can create new exciting image transformations, fantastic banner templates, customize it online, and print it on multiple social media platforms - no creative skills needed</h6>
         </div>
       </section>
 
