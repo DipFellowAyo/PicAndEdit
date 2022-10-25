@@ -1,4 +1,5 @@
 import Button from "../components/Button/Button";
+import Footer from "../components/Footer/Footer";
 
 const Home = () => {
 	return (
@@ -28,6 +29,7 @@ const Home = () => {
 				<hr></hr>
 				<div style={{ height: "1000px" }}></div>
 			</section>
+			<Footer />
 		</>
 	);
 };

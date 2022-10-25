@@ -17,15 +17,19 @@ const Nav = () => {
 			</div>
 			<div className="navBtns">
 				{Object.entries(navMapper).map(([title, { link, className }]) => (
-					<Link
-						to={link}
-						style={{
-							textDecoration: "none",
-							color: className === "btn2" ? "#fff" : "#000",
-						}}
-					>
-						<button className={className}>{title}</button>{" "}
-					</Link>
+					<button className={className}>
+						<Link
+							to={link}
+							style={{
+								width: "100%",
+								height: "100%",
+								textDecoration: "none",
+								color: className === "btn2" ? "#fff" : "#000",
+							}}
+						>
+							{title}
+						</Link>
+					</button>
 				))}
 			</div>
 		</nav>

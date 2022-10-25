@@ -6,7 +6,6 @@ import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
-import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -24,11 +23,10 @@ import CompareIcon from "@mui/icons-material/Compare";
 import CameraEnhanceIcon from "@mui/icons-material/CameraEnhance";
 import BlurLinearIcon from "@mui/icons-material/BlurLinear";
 import MergeTypeIcon from "@mui/icons-material/MergeType";
+import { SimpleFooter } from "../components/Footer/Footer";
+import UploadBox from "../components/uploadBox";
 
-let fakeText =
-	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-
-let doables = {
+export const doables = {
 	upload: <FileUploadIcon />,
 	"Remove Background": <WallpaperIcon />,
 	Enhance: <CameraEnhanceIcon />,
@@ -176,8 +174,8 @@ export default function Create() {
 			</Drawer>
 			<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
 				<DrawerHeader />
-				<Typography paragraph>{fakeText}</Typography>
-				<Typography paragraph>{fakeText}</Typography>
+				<UploadBox />
+				<SimpleFooter />
 			</Box>
 		</Box>
 	);
