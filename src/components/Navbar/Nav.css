@@ -17,7 +17,7 @@ nav {
 
 .btn0 {
     border: none;
-    width: 30%;
+    width: 100%;
     padding: 0.45rem;
     border-radius: 1.2rem;
     background-color: #ffffff;
@@ -32,7 +32,7 @@ nav {
 }
 
 .btn1 {
-    width: 30%;
+    width: 100%;
     padding: 0.45rem;
     border-radius: 1.2rem;
     background-color: #ffffff;
@@ -48,7 +48,7 @@ nav {
 }
 
 .btn2 {
-    width: 30%;
+    width: 100%;
     padding: 0.45rem;
     border-radius: 1.2rem;
     background-color: #000000;

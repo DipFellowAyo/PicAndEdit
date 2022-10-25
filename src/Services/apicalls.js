@@ -30,6 +30,7 @@ export function useApiQuery(queryKey, queryFn, options) {
 		}
 
 		return instance;
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return useQuery(
