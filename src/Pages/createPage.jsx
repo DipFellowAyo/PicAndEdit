@@ -104,7 +104,7 @@ const Drawer = styled(MuiDrawer, {
 	}),
 }));
 
-export default function Create() {
+export const Create = () => {
 	const theme = useTheme();
 	const [open, setOpen] = React.useState(true);
 	const handleDrawerOpen = () => setOpen(true);

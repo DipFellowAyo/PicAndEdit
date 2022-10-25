@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from "../components/Button/Button";
+import { Link } from 'react-router-dom';
 
 export const Home = () => {
     return (
@@ -13,7 +14,7 @@ export const Home = () => {
 				<div className="headerNote">
 					<h2>Start creating new exciting image transformations!</h2>
 					<h6>
-						Say Toodles to expensive designers, poor-quality prints, and slow
+						Say toodles to expensive designers, poor-quality prints, and slow
 						creative processes. With PicAndEdit, you can create new exciting
 						image transformations, fantastic banner templates, customize it
 						online, and print it on multiple social media platforms - no
@@ -22,7 +23,11 @@ export const Home = () => {
 				</div>
 			</section>
 			<section className="middleSection">
-				<Button title="Start Creating!" />
+                <Link
+                    to="/create"
+                >
+                    <Button title="Start Creating!" />
+                </Link>
 			</section>
 			<section className="lowerSection">
 				<h6>Shall we start creating?</h6>

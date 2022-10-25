@@ -3,14 +3,7 @@ import Nav from "./components/Navbar/Nav";
 import Footer from "./components/Footer/Footer";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home } from "./Pages/homePage";
-import Create from "./Pages/createPage";
-
-let routes = {
-	"/": () => <Home />,
-	"/create": () => <Create />,
-	"/dashboard": () => <Home />,
-};
+import routes from "./Services/routes";
 
 const App = () => {
 	return (
