@@ -2,6 +2,7 @@ import React from 'react';
 import Button from "../components/Button/Button";
 import { Link } from 'react-router-dom';
 
+
 export const Home = () => {
     return (
 		<>
@@ -24,7 +25,7 @@ export const Home = () => {
 			</section>
 			<section className="middleSection">
                 <Link
-                    to="/create"
+                    to={'/create'}
                 >
                     <Button title="Start Creating!" />
                 </Link>
@@ -32,7 +33,9 @@ export const Home = () => {
 			<section className="lowerSection">
 				<h6>Shall we start creating?</h6>
 				<hr></hr>
-				<div style={{ height: "1000px" }}></div>
+				<div style={{ height: "1000px" }}>
+					
+				</div>
 			</section>
 		</>
 	);
