@@ -42,6 +42,7 @@ export default function UploadBox() {
 			}
 		);
 	};
+
 	return (
 		<PhotoEditContext.Provider value={{ file, setFile }}>
 			<Stack
@@ -51,22 +52,30 @@ export default function UploadBox() {
 				sx={{ width: "100%" }}
 				justifyContent="space-around"
 			>
-				<Button variant="text" component="label">
-					Upload
-					<input
-						id="fileUpolad"
-						type="file"
-						onChange={handleFileChange}
-						multiple
-						style={{ visibility: "hidden", position: "absolute" }}
+				<Stack
+					direction="row"
+					divider={<Divider orientation="horizontal" flexItem />}
+					spacing={2}
+					sx={{ width: "100%" }}
+					justifyContent="space-around"
+				>
+					<Button variant="text" component="label">
+						Upload
+						<input
+							id="fileUpolad"
+							type="file"
+							onChange={handleFileChange}
+							multiple
+							style={{ visibility: "hidden", position: "absolute" }}
+						/>
+					</Button>
+					<TextField
+						id="standard-basic"
+						label="Image URL"
+						onChange={(e) => console.log(e.target.value)}
+						variant="standard"
 					/>
-				</Button>
-				<TextField
-					id="standard-basic"
-					label="Image URL"
-					onChange={(e) => console.log(e.target.value)}
-					variant="standard"
-				/>
+				</Stack>
 				{file !== "" && <Preview />}
 			</Stack>
 		</PhotoEditContext.Provider>

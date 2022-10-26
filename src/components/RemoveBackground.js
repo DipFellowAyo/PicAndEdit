@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
-import Box from "@mui/material/Box";
 import { PhotoEditContext } from "./uploadBox";
 import { axiosCall } from "../Services/axiosCalls";
-import { Button } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import { SketchPicker } from "react-color";
 import Typography from "@mui/material/Typography";
 import Dropdownselect from "./Dropdownselect";
+import AppSlider from "./Slider";
 
 export const RemoveBackground = () => {
 	const { file, setFile } = useContext(PhotoEditContext);
@@ -58,21 +58,41 @@ export const RemoveBackground = () => {
 	};
 
 	return (
-		<Box
+		<Stack
+			direction="column"
+			justifyContent="space-around"
+			alignItems="center"
+			spacing={2}
 			sx={{
 				padding: "5rem",
 				backgroundColor: "#ffffff",
 			}}
 		>
 			<Typography gutterBottom>Remove Background</Typography>
-			<SketchPicker
-				color={removebg.bg_color}
-				onChangeComplete={handleColorChange}
-			/>
+			<Stack
+				direction="row"
+				justifyContent="space-around"
+				alignItems="center"
+				spacing={1}
+			>
+				<SketchPicker
+					color={removebg.bg_color}
+					onChangeComplete={handleColorChange}
+				/>
+				<Stack
+					direction="column"
+					justifyContent="space-around"
+					alignItems="center"
+					spacing={1}
+				>
+					<Dropdownselect type="format" />
+					<Dropdownselect type="scale" />
+					<Dropdownselect type="output_type" />
+				</Stack>
+			</Stack>
+			<Typography gutterBottom>Image Blur</Typography>
+			<AppSlider element="bg_blur" />
 
-			<Dropdownselect type="format" />
-
-			<Dropdownselect type="scale" />
 			<Button variant="text" component="label">
 				Upload Background
 				<input
@@ -85,9 +105,8 @@ export const RemoveBackground = () => {
 				/>
 			</Button>
 
-			{/* background image bg_blur: slider 0 - 100 */}
 			{/* backgroound width height crop  bg_width, bg_height*/}
-			{/* output_type: cutout || mask */}
+
 			<Button
 				onClick={() => {
 					handleClick();
@@ -95,6 +114,6 @@ export const RemoveBackground = () => {
 			>
 				Apply
 			</Button>
-		</Box>
+		</Stack>
 	);
 };

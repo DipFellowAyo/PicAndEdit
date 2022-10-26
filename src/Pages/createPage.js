@@ -155,6 +155,7 @@ export default function Create() {
 									justifyContent: open ? "initial" : "center",
 									px: 2.5,
 								}}
+								onClick={() => console.log(title)}
 							>
 								<ListItemIcon
 									sx={{
