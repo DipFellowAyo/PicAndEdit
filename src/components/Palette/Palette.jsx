@@ -44,6 +44,9 @@ const ActionButton = styled(Button)(({ theme }) => ({
 
 export const Palette = (props) => {
 
+    // const FormData = require('form-data');
+    // const http = require("https");
+
     // imageModal
     const [preview, setPreview] = useState()
     const [addAnotherImg, setAddAnotherImg] = useState('none')
@@ -113,9 +116,39 @@ export const Palette = (props) => {
         setAddAnotherImg("block")
     }
 
-    const handleAction = () => {
+    // const handleAction = () => {
+    //     if (selectedImage["imageFile"] !== null) {
+    //         const form = new FormData();
+    //         // const fs = require('fs');
 
-    }
+    //         form.append('image', selectedImage["imageFile"]);
+    //         const options = {
+    //             "method": "POST",
+    //             "hostname": "api.picsart.io",
+    //             "port": null,
+    //             "path": "/tools/1.0/upload",
+    //             "headers": {
+    //                 "accept": "application/json",
+    //                 "X-Picsart-API-Key": "74Y5uzphxL3bwB3icSOQAWTk3tHZaqB4",
+    //                 ...form.getHeaders()
+    //             }
+    //         };
+    //         const req = http.request(options, function (res) {
+    //             const chunks = [];
+    //             res.on("data", function (chunk) {
+    //               chunks.push(chunk);
+    //             });
+    //             res.on("end", function () {
+    //               const body = Buffer.concat(chunks);
+    //               console.log(body.toString());
+    //             });
+    //           });
+    //           req.on("error", (e) => {
+    //             console.error(e);
+    //           });
+    //           form.pipe(req);
+    //     }
+    // }
 
   return (
     <React.Fragment>
@@ -163,7 +196,7 @@ export const Palette = (props) => {
                     <h6 style={{fontSize: '0.8rem', fontWeight: '800', width: '95%', margin: 'auto', textAlign: 'start'}}>{action} &nbsp;&nbsp; | &nbsp;&nbsp; W: <span>{selectedImage.width}</span> &nbsp; H: <span>{selectedImage.height}</span> &nbsp;&nbsp; | &nbsp;&nbsp; Image Size: <span>{selectedImage.size}</span> </h6>
                 </div>
                 <Box sx={{ position: 'relative', bgcolor: '#303544', height: '92%', padding: '3% 0' }}>
-                    <Box className='imageUploadModal'>
+                   <Box className='imageUploadModal'>
 
                         <form id="selectImgForm">
                             <input 
@@ -199,7 +232,7 @@ export const Palette = (props) => {
                                 >
                                 <AddPhotoAlternateIcon 
                                     className='addPhoto'
-                                    color='action'
+                                    color='action' 
                                     sx={{fontSize: 120}}
                                 />
                                 </Button>
@@ -238,7 +271,8 @@ export const Palette = (props) => {
                         <ActionButton 
                             variant="contained" 
                             endIcon={<UploadFileIcon color='action'/>}
-                            onClick={handleAction}>
+                            // onClick={handleAction}
+                            >
                         upload
                         </ActionButton>
                     </div>

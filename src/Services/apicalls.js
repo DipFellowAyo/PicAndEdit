@@ -17,13 +17,13 @@ export function useApiQuery(queryKey, queryFn, options) {
 		const instance = Axios.create({
 			baseURL: "https://api.picsart.io/tools/1.0/",
 			headers: {
-				"Content-Type": "application/json",
+				"accept": "application/json",
 				"X-Picsart-API-Key": apiKey,
 			},
 		});
 		if (options.image_url) {
 			instance["headers"] = {
-				"Content-Type": "application/json",
+				"accept": "application/json",
 				"X-Picsart-API-Key": apiKey,
 				image_url: options.image_url,
 			};
@@ -45,7 +45,7 @@ export function useApiMutation(mutationFn, options) {
 		const instance = Axios.create({
 			baseURL: "https://api.picsart.io/tools/1.0/",
 			headers: {
-				"Content-Type": "application/json",
+				"accept": "application/json",
 				"X-Picsart-API-Key": apiKey,
 			},
 		});
