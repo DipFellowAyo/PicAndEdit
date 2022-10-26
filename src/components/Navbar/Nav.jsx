@@ -22,7 +22,6 @@ const Nav = () => {
 					>
 						<button className={className}>{title}</button>
 					</Link>
-					
 				))}
 			</div>
 		</nav>
