@@ -1,6 +1,6 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import { doables } from "../Pages/createPage";
+import { doables } from "../Pages/createPagee";
 import Stack from "@mui/material/Stack";
 import DropDownPopper from "./DropdownPopper";
 import RemoveBackground from "./RemoveBackground";
