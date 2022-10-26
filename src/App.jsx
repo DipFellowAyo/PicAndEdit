@@ -4,11 +4,6 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Create from "./Pages/createPage";
 import Home from "./Pages/home";
-import { createContext } from "react";
-
-const PhotoEditContext = createContext({
-	image: "gvkbjl",
-});
 
 const App = () => {
 	let routes = {
@@ -18,16 +13,14 @@ const App = () => {
 	};
 	return (
 		<Router>
-			<PhotoEditContext.Provider value="John Doe">
-				<div>
-					<Nav />
-				</div>
-				<Routes>
-					{Object.entries(routes).map(([path, Component]) => (
-						<Route path={path} element={Component} />
-					))}
-				</Routes>
-			</PhotoEditContext.Provider>
+			<div>
+				<Nav />
+			</div>
+			<Routes>
+				{Object.entries(routes).map(([path, Component]) => (
+					<Route key={path} path={path} element={Component} />
+				))}
+			</Routes>
 		</Router>
 	);
 };

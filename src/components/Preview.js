@@ -1,12 +1,15 @@
-import React from "react";
+import { useContext } from "react";
 import Box from "@mui/material/Box";
 import { doables } from "../Pages/createPage";
 import Stack from "@mui/material/Stack";
 import DropDownPopper from "./DropdownPopper";
-import RemoveBackground from "./RemoveBackground";
+import { RemoveBackground } from "./RemoveBackground";
 import Divider from "@mui/material/Divider";
+import { PhotoEditContext } from "./uploadBox";
 
-export default function Preview({ file }) {
+export default function Preview() {
+	const { file, setFile } = useContext(PhotoEditContext);
+
 	return (
 		<Box>
 			<Box

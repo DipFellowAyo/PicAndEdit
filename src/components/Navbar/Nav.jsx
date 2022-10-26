@@ -17,7 +17,7 @@ const Nav = () => {
 			</div>
 			<div className="navBtns">
 				{Object.entries(navMapper).map(([title, { link, className }]) => (
-					<button className={className}>
+					<button className={className} key={title}>
 						<Link
 							to={link}
 							style={{
