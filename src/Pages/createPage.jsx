@@ -1,11 +1,11 @@
 import React from "react";
-import { Palette } from '../components/Palette/Palette';
+import { Upload } from '../components/Upload/Upload';
 
 export const Create = () => {
 	return (
 		<>
 			<section>
-				<Palette />
+				<Upload />
 			</section>
 		</>
 	);

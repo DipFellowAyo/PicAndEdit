@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import "./Palette.css";
+import "./Enhance.css";
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -42,10 +42,7 @@ const ActionButton = styled(Button)(({ theme }) => ({
     },
   }));
 
-export const Palette = (props) => {
-
-    // const FormData = require('form-data');
-    // const http = require("https");
+export const Upload = (props) => {
 
     // imageModal
     const [preview, setPreview] = useState()
@@ -119,7 +116,7 @@ export const Palette = (props) => {
     // const handleAction = () => {
     //     if (selectedImage["imageFile"] !== null) {
     //         const form = new FormData();
-    //         // const fs = require('fs');
+            // const fs = require('fs');
 
     //         form.append('image', selectedImage["imageFile"]);
     //         const options = {
