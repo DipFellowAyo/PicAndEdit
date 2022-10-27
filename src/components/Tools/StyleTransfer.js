@@ -4,7 +4,7 @@ import {
 	endpoints,
 	PhotoEditContext,
 } from "../../Services/axiosCalls";
-import { Button, Grid, Stack, Tooltip } from "@mui/material";
+import { Button, Stack, Tooltip } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Dropdownselect from "../Dropdownselect";
 
@@ -26,18 +26,20 @@ export const StyleTransfer = () => {
 	};
 
 	const handleFileChange = (e) => {
+		console.log(e.target.files[0]);
 		const files = e.target.files;
 		// const filesArr = Array.prototype.slice.call(files);
 		setUploadData({
 			...uploadData,
 			reference_image: files[0],
-			reference_image_url: "",
+			reference_image_url: null,
+			bg_image: null, // Click the Browse button to upload an image file. This only has an effect when output=cutout.
+			bg_image_url: null, //
+			bg_image_id: null,
+			reference_image_id: null,
 		});
-		let data = {
-			image: e.target.files[0],
-			image_url: "",
-		};
 	};
+	// exactly one of (reference_image, reference_image_id, reference_image_url) are expected, got 2
 
 	return (
 		<Stack
@@ -68,39 +70,22 @@ export const StyleTransfer = () => {
 				</Button>
 			</Stack>
 
-			{/* <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-				{Object.entries(elements).map((item) => {
-					console.log(item[1]);
-					return (
-						<Grid item xs={6}>
-							<Typography gutterBottom>{item[1]["name"]}</Typography>
-							<AppSlider
-								element={item[1]["name"].toLocaleLowerCase()}
-								values={item[1]["values"]}
-							/>
-						</Grid>
-					);
-				})}
-			</Grid> */}
-			<Tooltip title="Smaller numbers preserve more from the original image, bigger numbers make the original image look closer to the reference image. ">
-				<Dropdownselect type="level" />
-			</Tooltip>
-
 			<Stack
 				direction="row"
 				justifyContent="space-around"
 				alignItems="center"
 				spacing={1}
 			>
+				<Dropdownselect type="level" />
 				<Dropdownselect type="format" />
-				<Button
-					onClick={() => {
-						handleClick();
-					}}
-				>
-					Apply
-				</Button>
 			</Stack>
+			<Button
+				onClick={() => {
+					handleClick();
+				}}
+			>
+				Apply
+			</Button>
 		</Stack>
 	);
 };

@@ -6,14 +6,13 @@ import { PhotoEditContext } from "../Services/axiosCalls";
 export default function AppSlider({ element, values }) {
 	const { uploadData, setUploadData } = useContext(PhotoEditContext);
 	const [value, setValue] = useState(null);
-
 	const handleChange = (event, value) => {
 		setUploadData({ ...uploadData, [element]: value });
 		setValue(value);
 	};
 
 	return (
-		<Box width={300}>
+		<Box width={100} min={values[0] || 0}>
 			<Slider
 				value={value}
 				size="small"
@@ -23,6 +22,11 @@ export default function AppSlider({ element, values }) {
 				onChange={(e, value) => handleChange(e, value)}
 				max={values[1] || 100}
 				min={values[0] || 0}
+				sx={{
+					display: "flex",
+					alignItems: "flex-start",
+					justifyContent: "flex-start",
+				}}
 			/>
 		</Box>
 	);

@@ -27,16 +27,19 @@ import { SimpleFooter } from "../components/Footer/Footer";
 import UploadBox from "../components/uploadBox";
 import { PhotoEditContext } from "../Services/axiosCalls";
 import Stack from "@mui/material/Stack";
+import { Button } from "@mui/material";
+import { saveAs } from "file-saver";
+import PreviousImages from "../components/Tools/PreviousImages";
 
 export const doables = {
-	upload: <FileUploadIcon />,
+	// upload: <FileUploadIcon />,
 	"Remove Background": <WallpaperIcon />,
-	Enhance: <CameraEnhanceIcon />,
-	Effects: <AutoFixHighIcon />,
+	// Enhance: <CameraEnhanceIcon />,
+	// Effects: <AutoFixHighIcon />,
 	Adjust: <MailIcon />,
 	"Style Transfer": <CompareIcon />,
-	"Content Generation": <BlurLinearIcon />,
-	Conversion: <MergeTypeIcon />,
+	// "Content Generation": <BlurLinearIcon />,
+	// Conversion: <MergeTypeIcon />,
 };
 
 const drawerWidth = 240;
@@ -188,6 +191,16 @@ export default function Create() {
 					{" "}
 					<DrawerHeader />
 					<UploadBox />
+					<Button
+						variant="text"
+						component="label"
+						onClick={() => {
+							saveAs(uploadData.image_url, "PickEdit.jpg");
+						}}
+					>
+						Download
+					</Button>
+					<PreviousImages />
 				</Stack>
 			</Box>
 		</Box>

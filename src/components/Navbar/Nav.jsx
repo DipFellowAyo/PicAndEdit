@@ -3,7 +3,7 @@ import "./Nav.css";
 import HeroImg from "../HeroImg/HeroImg";
 import { Link } from "react-router-dom";
 
-const navMapper = {
+export const navMapper = {
 	Home: { link: "/", className: "btn0" },
 	Create: { link: "/create", className: "btn1" },
 	"Brand ur Biz": { link: "/brand", className: "btn2" },

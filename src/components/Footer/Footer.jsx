@@ -44,7 +44,11 @@ export const SimpleFooter = () => {
 	const classes = useStyles();
 	return (
 		<Box className={classes.footer}>
-			<Stack direction="row" justifyContent="space-between" alignItems="center">
+			<Stack
+				direction="column"
+				justifyContent="space-between"
+				alignItems="center"
+			>
 				<HeroImg />
 				<p>Copyright © {currentYear}</p>
 			</Stack>

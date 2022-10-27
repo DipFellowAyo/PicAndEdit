@@ -1,14 +1,15 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import {
 	axiosCall,
 	endpoints,
 	PhotoEditContext,
 } from "../../Services/axiosCalls";
-import { Button, Stack } from "@mui/material";
+import { Button, Divider, Stack, Tooltip } from "@mui/material";
 import { SketchPicker } from "react-color";
 import Typography from "@mui/material/Typography";
 import Dropdownselect from "../Dropdownselect";
 import AppSlider from "../Slider";
+import { Box } from "@mui/system";
 
 export const RemoveBackground = () => {
 	const { uploadData, setUploadData } = useContext(PhotoEditContext);
@@ -26,9 +27,24 @@ export const RemoveBackground = () => {
 			}
 		);
 	};
+	const handleFileChange = (e) => {
+		const files = e.target.files;
+		setUploadData({
+			...uploadData,
+			bg_image: files[0],
+			bg_image_url: "",
+			bg_color: "",
+		});
+	};
 
 	const handleColorChange = (color) => {
-		setUploadData({ ...uploadData, bg_color: color.hex });
+		setUploadData({
+			...uploadData,
+			bg_color: color.hex,
+			bg_image: "",
+			bg_image_url: "",
+			bg_image_id: "",
+		});
 	};
 
 	return (
@@ -51,10 +67,16 @@ export const RemoveBackground = () => {
 				alignItems="center"
 				spacing={1}
 			>
-				<SketchPicker
-					color={PhotoEditContext.bg_color}
-					onChangeComplete={handleColorChange}
-				/>
+				<Tooltip title="Select background color">
+					<Box>
+						<SketchPicker
+							color={uploadData.bg_color}
+							onChangeComplete={handleColorChange}
+							disableAlpha={true}
+						/>
+					</Box>
+				</Tooltip>
+
 				<Stack
 					direction="column"
 					justifyContent="space-around"
@@ -63,33 +85,38 @@ export const RemoveBackground = () => {
 				>
 					<Dropdownselect type="format" />
 					<Dropdownselect type="scale" />
-					<Dropdownselect type="output_type" />
+					<Dropdownselect type="output_type" />{" "}
+					<Stack>
+						<Typography gutterBottom>Image Blur</Typography>
+						<AppSlider element="bg_blur" values={[0, 100]} />
+					</Stack>
 				</Stack>
 			</Stack>
-			<Typography gutterBottom>Image Blur</Typography>
-			<AppSlider element="bg_blur" values={[0, 100]} />
 
-			{/* <Button variant="text" component="label">
-				Upload Background
-				<input
-					id="fileUpolad"
-					type="file"
-					// onChange={handleFileChange}
-					// background image
-					multiple
-					style={{ visibility: "hidden", position: "absolute" }}
-				/>
-			</Button> */}
-
-			{/* backgroound width height crop  bg_width, bg_height*/}
-
-			<Button
-				onClick={() => {
-					handleClick();
-				}}
+			<Stack
+				direction="row"
+				spacing={2}
+				alignItems="center"
+				divider={<Divider orientation="vertical" flexItem />}
 			>
-				Apply
-			</Button>
+				<Button variant="text" component="label">
+					Upload Background Image
+					<input
+						id="fileUpolad"
+						type="file"
+						onChange={handleFileChange}
+						multiple
+						style={{ visibility: "hidden", position: "absolute" }}
+					/>
+				</Button>{" "}
+				<Button
+					onClick={() => {
+						handleClick();
+					}}
+				>
+					Apply
+				</Button>
+			</Stack>
 		</Stack>
 	);
 };

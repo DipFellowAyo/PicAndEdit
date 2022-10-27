@@ -2,14 +2,14 @@ import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
 export async function axiosCall(url, data, method) {
-	console.log("API", data);
-
 	if (data.image_url !== "") {
 		data.image = "";
 		data.image_id = "";
 	}
 
-	let enpointData = Object.entries(data).filter(([key, value]) => value !== "");
+	let enpointData = Object.entries(data).filter(([key, value]) => {
+		return value !== "" && value !== null;
+	});
 	data = Object.fromEntries(enpointData);
 
 	let formdata = new FormData();
@@ -42,18 +42,16 @@ export const PhotoEditContext = createContext({
 
 export const PhotoEditContextProvider = ({ children }) => {
 	const oldData = JSON.parse(localStorage.getItem("lastConfig"));
-	console.log(oldData?.image_url);
-
 	const [uploadData, setUploadData] = useState({
 		// REMOVE BACKGROUND VALUE
-		currentTool: "removebg",
+		currentTool: oldData?.currentTool ?? "removebg",
 		format: "",
 		image: "",
 		image_url: oldData?.image_url ?? "", // Enter the URL of a public-facing image.
 		image_id: "", // Enter the ID of an image that you have previously uploaded to the API.
 		output_type: "cutout", //cutout returns the person as a sticker while mask returns a mask photo of the person.
-		bg_image: "", // Click the Browse button to upload an image file. This only has an effect when output=cutout.
-		bg_image_url: "", //Enter the URL of a public-facing image. If this has a value, the output value is dismissed.
+		bg_image: null, // Click the Browse button to upload an image file. This only has an effect when output=cutout.
+		bg_image_url: null, //Enter the URL of a public-facing image. If this has a value, the output value is dismissed.
 		bg_image_id: "", //Enter the ID of an image previously uploaded to Picsart. See /upload method. If this has a value, the output value is dismissed.
 		bg_color: "", // Can be a hexcolor code (e.g., #82d5fa, #fff) or a color name (e.g., blue). For semi-transparency, 4-/8-digit hexcodes are also supported (e.g., #18d4ff87). (If this parameter is present, the other bg_ parameters must be empty, besides bg_size).
 		bg_blur: "", //value from 0 to +100.
@@ -73,10 +71,23 @@ export const PhotoEditContextProvider = ({ children }) => {
 		sharpen: "",
 		noise: "",
 		vignette: "",
+
+		// STYLE TRANSFER VALUES
+		reference_image: null,
+		reference_image_id: null,
+		reference_image_url: null,
 	});
 	useEffect(() => {
 		localStorage.setItem("lastConfig", JSON.stringify(uploadData));
-		console.log(uploadData);
+		let previousImages = [];
+		previousImages.push(uploadData.image_url, uploadData.bg_image_url);
+
+		if (localStorage.getItem("previousImages")) {
+			let oldImages = JSON.parse(localStorage.getItem("previousImages"));
+			previousImages = [...oldImages, ...previousImages];
+			previousImages = [...new Set(previousImages)];
+		}
+		localStorage.setItem("previousImages", JSON.stringify(previousImages));
 	}, [uploadData]);
 
 	return (

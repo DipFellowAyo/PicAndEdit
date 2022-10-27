@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import Footer from "../components/Footer/Footer";
+import { navMapper } from "../components/Navbar/Nav";
 
 const Home = () => {
 	return (
@@ -22,14 +24,15 @@ const Home = () => {
 				</div>
 			</section>
 			<section className="middleSection">
-				<Button title="Start Creating!" />
+				<Link to={navMapper.Create.link}>
+					<Button title="Start Creating!" />
+				</Link>
 			</section>
-			<section className="lowerSection">
+			{/* <section className="lowerSection">
 				<h6>Shall we start creating?</h6>
 				<hr></hr>
 				<div style={{ height: "1000px" }}></div>
-			</section>
-			<Footer />
+			</section> */}
 		</>
 	);
 };

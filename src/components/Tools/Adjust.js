@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import {
 	axiosCall,
 	endpoints,
@@ -91,9 +91,8 @@ export const Adjust = () => {
 
 			<Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
 				{Object.entries(elements).map((item) => {
-					console.log(item[1]);
 					return (
-						<Grid item xs={6}>
+						<Grid item xs={6} key={item[1]["name"]}>
 							<Typography gutterBottom>{item[1]["name"]}</Typography>
 							<AppSlider
 								element={item[1]["name"].toLocaleLowerCase()}
