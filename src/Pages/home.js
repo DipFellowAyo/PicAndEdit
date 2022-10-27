@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
-import Footer from "../components/Footer/Footer";
 import { navMapper } from "../components/Navbar/Nav";
 
 const Home = () => {

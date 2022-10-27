@@ -53,8 +53,11 @@ export default function UploadBox() {
 			direction="column"
 			divider={<Divider orientation="horizontal" flexItem />}
 			spacing={2}
-			sx={{ width: "100%" }}
 			justifyContent="space-around"
+			sx={{
+				width: "100%",
+				backgroundColor: uploadData.bg_color ?? "#ffffff",
+			}}
 		>
 			<Stack
 				direction="row"
