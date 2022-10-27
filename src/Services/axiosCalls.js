@@ -1,6 +1,9 @@
 import axios from "axios";
 
 export async function axiosCall(url, data, method) {
+
+    //  if data is empty, filter 
+
 	let headersList = {
 		"x-picsart-api-key": "AeGNHQYU1meYoWsUAfCyMfLCVI7ZQtdF",
 	};
