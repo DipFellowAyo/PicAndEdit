@@ -1,10 +1,14 @@
 import { useContext, useState } from "react";
-import { axiosCall, endpoints, PhotoEditContext } from "../Services/axiosCalls";
+import {
+	axiosCall,
+	endpoints,
+	PhotoEditContext,
+} from "../../Services/axiosCalls";
 import { Button, Stack } from "@mui/material";
 import { SketchPicker } from "react-color";
 import Typography from "@mui/material/Typography";
-import Dropdownselect from "./Dropdownselect";
-import AppSlider from "./Slider";
+import Dropdownselect from "../Dropdownselect";
+import AppSlider from "../Slider";
 
 export const RemoveBackground = () => {
 	const { uploadData, setUploadData } = useContext(PhotoEditContext);
@@ -38,7 +42,9 @@ export const RemoveBackground = () => {
 				backgroundColor: "#ffffff",
 			}}
 		>
-			<Typography gutterBottom>Remove Background</Typography>
+			<Typography variant="h4" gutterBottom noWrap={true} color="grey">
+				{uploadData.currentTool}
+			</Typography>
 			<Stack
 				direction="row"
 				justifyContent="space-around"
@@ -61,7 +67,7 @@ export const RemoveBackground = () => {
 				</Stack>
 			</Stack>
 			<Typography gutterBottom>Image Blur</Typography>
-			<AppSlider element="bg_blur" />
+			<AppSlider element="bg_blur" values={[0, 100]} />
 
 			{/* <Button variant="text" component="label">
 				Upload Background

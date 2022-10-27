@@ -10,21 +10,36 @@ import { axiosCall, endpoints, PhotoEditContext } from "../Services/axiosCalls";
 export default function UploadBox() {
 	const { uploadData, setUploadData } = useContext(PhotoEditContext);
 
-	const handleFileChange = (e) => {
+	const handleFileChange = (e, type) => {
 		const files = e.target.files;
 		// const filesArr = Array.prototype.slice.call(files);
-		setUploadData({ ...uploadData, image: files[0], image_url: "" });
-		let data = {
-			image: e.target.files[0],
-			image_url: "",
-		};
+
+		let data;
+		if (type === "url") {
+			setUploadData({
+				...uploadData,
+				image_url: e.target.value,
+				image: "",
+			});
+			data = {
+				image_url: e.target.value,
+				image: "",
+			};
+		} else {
+			setUploadData({ ...uploadData, image: files[0], image_url: "" });
+			data = {
+				image: e.target.files[0],
+				image_url: "",
+			};
+		}
 
 		axiosCall(endpoints.upload, data).then(
 			(res) => {
 				setUploadData({
 					...uploadData,
 					image_url: res.data.data.url,
-					image_id: res.data.data.id,
+					image_id: "",
+					image: "",
 				});
 			},
 			(err) => {
@@ -43,7 +58,7 @@ export default function UploadBox() {
 		>
 			<Stack
 				direction="row"
-				divider={<Divider orientation="horizontal" flexItem />}
+				divider={<Divider orientation="vertical" flexItem />}
 				spacing={2}
 				sx={{ width: "100%" }}
 				justifyContent="space-around"
@@ -53,7 +68,7 @@ export default function UploadBox() {
 					<input
 						id="fileUpolad"
 						type="file"
-						onChange={handleFileChange}
+						onChange={(e) => handleFileChange(e, "image")}
 						multiple
 						style={{ visibility: "hidden", position: "absolute" }}
 					/>
@@ -61,11 +76,12 @@ export default function UploadBox() {
 				<TextField
 					id="standard-basic"
 					label="Image URL"
-					onChange={(e) => console.log(e.target.value)}
+					onChange={(e) => handleFileChange(e, "url")}
 					variant="standard"
+					placeholder={uploadData.image_url}
 				/>
 			</Stack>
-			{uploadData.image !== "" || uploadData.image_url !== "" && <Preview />}
+			{(uploadData.image !== "" || uploadData.image_url !== "") && <Preview />}
 		</Stack>
 	);
 }

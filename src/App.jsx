@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Create from "./Pages/createPage";
 import Home from "./Pages/home";
 import { PhotoEditContextProvider } from "./Services/axiosCalls";
+import { Box } from "@mui/material";
+import { SimpleFooter } from "./components/Footer/Footer";
 
 const App = () => {
 	let routes = {
@@ -23,6 +25,16 @@ const App = () => {
 						<Route key={path} path={path} element={Component} />
 					))}
 				</Routes>
+				<Box
+					sx={{
+						// position: "absolute",
+						bottom: 0,
+						width: "100%",
+						display: "flex",
+					}}
+				>
+					<SimpleFooter />
+				</Box>
 			</PhotoEditContextProvider>
 		</Router>
 	);

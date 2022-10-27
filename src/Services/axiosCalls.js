@@ -6,7 +6,7 @@ export async function axiosCall(url, data, method) {
 
 	if (data.image_url !== "") {
 		data.image = "";
-        data.image_id = "";
+		data.image_id = "";
 	}
 
 	let enpointData = Object.entries(data).filter(([key, value]) => value !== "");
@@ -31,6 +31,9 @@ export async function axiosCall(url, data, method) {
 export const endpoints = {
 	removebg: "/removebg",
 	upload: "/upload",
+	adjust: "/adjust",
+	blur: "/blur",
+	styletransfer: "/styletransfer",
 };
 
 export const PhotoEditContext = createContext({
@@ -38,11 +41,15 @@ export const PhotoEditContext = createContext({
 });
 
 export const PhotoEditContextProvider = ({ children }) => {
+	const oldData = JSON.parse(localStorage.getItem("lastConfig"));
+	console.log(oldData?.image_url);
+
 	const [uploadData, setUploadData] = useState({
 		// REMOVE BACKGROUND VALUE
+		currentTool: "removebg",
 		format: "",
 		image: "",
-		image_url: "", // Enter the URL of a public-facing image.
+		image_url: oldData?.image_url ?? "", // Enter the URL of a public-facing image.
 		image_id: "", // Enter the ID of an image that you have previously uploaded to the API.
 		output_type: "cutout", //cutout returns the person as a sticker while mask returns a mask photo of the person.
 		bg_image: "", // Click the Browse button to upload an image file. This only has an effect when output=cutout.
@@ -54,9 +61,21 @@ export const PhotoEditContextProvider = ({ children }) => {
 		bg_height: "", // Size, in pixels, for the height. If left blank, the background is left at its original height.
 		scale: "", // Fit is where the longer side (width/height) fits the background. Fill is where the shorter side fits the background. Fit is the default.
 
-		// ENHANCE VALUES
+		// UPLOAD VALUE
+		brightness: "",
+		contrast: "",
+		clarity: "",
+		saturation: "",
+		hue: "",
+		shadows: "",
+		highlights: "",
+		temperature: "",
+		sharpen: "",
+		noise: "",
+		vignette: "",
 	});
 	useEffect(() => {
+		localStorage.setItem("lastConfig", JSON.stringify(uploadData));
 		console.log(uploadData);
 	}, [uploadData]);
 

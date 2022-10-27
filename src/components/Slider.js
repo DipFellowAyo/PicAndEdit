@@ -1,24 +1,28 @@
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { PhotoEditContext } from "../Services/axiosCalls";
 
-export default function AppSlider({ element }) {
+export default function AppSlider({ element, values }) {
 	const { uploadData, setUploadData } = useContext(PhotoEditContext);
+	const [value, setValue] = useState(null);
+
 	const handleChange = (event, value) => {
 		setUploadData({ ...uploadData, [element]: value });
+		setValue(value);
 	};
 
 	return (
 		<Box width={300}>
 			<Slider
+				value={value}
 				size="small"
-				defaultValue={50}
+				defaultValue={(values[1] + values[0]) / 2}
 				aria-label="Small"
 				valueLabelDisplay="auto"
 				onChange={(e, value) => handleChange(e, value)}
-				max={100}
-				min={0}
+				max={values[1] || 100}
+				min={values[0] || 0}
 			/>
 		</Box>
 	);

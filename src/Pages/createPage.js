@@ -25,6 +25,8 @@ import BlurLinearIcon from "@mui/icons-material/BlurLinear";
 import MergeTypeIcon from "@mui/icons-material/MergeType";
 import { SimpleFooter } from "../components/Footer/Footer";
 import UploadBox from "../components/uploadBox";
+import { PhotoEditContext } from "../Services/axiosCalls";
+import Stack from "@mui/material/Stack";
 
 export const doables = {
 	upload: <FileUploadIcon />,
@@ -107,6 +109,7 @@ export default function Create() {
 	const [open, setOpen] = React.useState(true);
 	const handleDrawerOpen = () => setOpen(true);
 	const handleDrawerClose = () => setOpen(false);
+	const { uploadData, setUploadData } = React.useContext(PhotoEditContext);
 
 	return (
 		<Box sx={{ display: "flex" }}>
@@ -155,7 +158,9 @@ export default function Create() {
 									justifyContent: open ? "initial" : "center",
 									px: 2.5,
 								}}
-								onClick={() => console.log(title)}
+								onClick={() =>
+									setUploadData({ ...uploadData, currentTool: title })
+								}
 							>
 								<ListItemIcon
 									sx={{
@@ -174,9 +179,16 @@ export default function Create() {
 				</List>
 			</Drawer>
 			<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-				<DrawerHeader />
-				<UploadBox />
-				<SimpleFooter />
+				<Stack
+					direction="column"
+					justifyContent="flex-start"
+					alignItems="center"
+					spacing={2}
+				>
+					{" "}
+					<DrawerHeader />
+					<UploadBox />
+				</Stack>
 			</Box>
 		</Box>
 	);

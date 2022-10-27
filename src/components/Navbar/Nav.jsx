@@ -24,7 +24,7 @@ const Nav = () => {
 								width: "100%",
 								height: "100%",
 								textDecoration: "none",
-								color: className === "btn2" ? "#fff" : "#000",
+								color: "inherit",
 							}}
 						>
 							{title}

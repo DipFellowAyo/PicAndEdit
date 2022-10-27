@@ -19,6 +19,7 @@ export default function Dropdownselect({ type }) {
 		format: ["JPG", "PNG", "TIFF", "WEBP"],
 		scale: ["fit", "fill"],
 		output_type: ["cutout", "mask"],
+		level: ["l1", "l2", "l3", "l4", "l5"],
 	};
 
 	return (
