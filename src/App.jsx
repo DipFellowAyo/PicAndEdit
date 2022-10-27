@@ -4,6 +4,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Create from "./Pages/createPage";
 import Home from "./Pages/home";
+import { PhotoEditContextProvider } from "./Services/axiosCalls";
 
 const App = () => {
 	let routes = {
@@ -13,14 +14,16 @@ const App = () => {
 	};
 	return (
 		<Router>
-			<div>
-				<Nav />
-			</div>
-			<Routes>
-				{Object.entries(routes).map(([path, Component]) => (
-					<Route key={path} path={path} element={Component} />
-				))}
-			</Routes>
+			<PhotoEditContextProvider>
+				<div>
+					<Nav />
+				</div>
+				<Routes>
+					{Object.entries(routes).map(([path, Component]) => (
+						<Route key={path} path={path} element={Component} />
+					))}
+				</Routes>
+			</PhotoEditContextProvider>
 		</Router>
 	);
 };

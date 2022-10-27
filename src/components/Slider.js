@@ -1,11 +1,12 @@
-import { useState } from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
-import { PhotoEditContext } from "./uploadBox";
+import { useContext } from "react";
+import { PhotoEditContext } from "../Services/axiosCalls";
 
 export default function AppSlider({ element }) {
+	const { uploadData, setUploadData } = useContext(PhotoEditContext);
 	const handleChange = (event, value) => {
-		PhotoEditContext[element] = value;
+		setUploadData({ ...uploadData, [element]: value });
 	};
 
 	return (

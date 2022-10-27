@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
-import { PhotoEditContext } from "./uploadBox";
-import { axiosCall } from "../Services/axiosCalls";
+import { axiosCall, endpoints, PhotoEditContext } from "../Services/axiosCalls";
 import { Button, Stack } from "@mui/material";
 import { SketchPicker } from "react-color";
 import Typography from "@mui/material/Typography";
@@ -8,53 +7,24 @@ import Dropdownselect from "./Dropdownselect";
 import AppSlider from "./Slider";
 
 export const RemoveBackground = () => {
-	const { file, setFile } = useContext(PhotoEditContext);
-	const [removebg, setRremovebg] = useState({
-		image: "",
-		image_url: file, // Enter the URL of a public-facing image.
-		image_id: "", // Enter the ID of an image that you have previously uploaded to the API.
-		output_type: "cutout", //cutout returns the person as a sticker while mask returns a mask photo of the person.
-		bg_image: "", // Click the Browse button to upload an image file. This only has an effect when output=cutout.
-		bg_image_url: "", //Enter the URL of a public-facing image. If this has a value, the output value is dismissed.
-		bg_image_id: "", //Enter the ID of an image previously uploaded to Picsart. See /upload method. If this has a value, the output value is dismissed.
-		bg_color: "", // Can be a hexcolor code (e.g., #82d5fa, #fff) or a color name (e.g., blue). For semi-transparency, 4-/8-digit hexcodes are also supported (e.g., #18d4ff87). (If this parameter is present, the other bg_ parameters must be empty, besides bg_size).
-		bg_blur: "", //value from 0 to +100.
-		bg_width: "", //Size, in pixels, for the width. If left blank, the background is left at its original width.
-		bg_height: "", // Size, in pixels, for the height. If left blank, the background is left at its original height.
-		scale: "", // Fit is where the longer side (width/height) fits the background. Fill is where the shorter side fits the background. Fit is the default.
-		format: "JPG",
-	});
-
-	const endpoints = {
-		upload: {
-			link: "/upload",
-			image: "",
-			image_url: "",
-		},
-	};
-
-	let name = "/removebg";
-	let enpointData = Object.entries(removebg).filter(
-		([key, value]) => value !== ""
-	);
-
-	let data = Object.fromEntries(enpointData);
-
+	const { uploadData, setUploadData } = useContext(PhotoEditContext);
 	const handleClick = () => {
-		axiosCall(name, data).then(
+		axiosCall(endpoints.removebg, uploadData).then(
 			(res) => {
-				console.log(res);
-				setFile(res.data.data.url);
-				PhotoEditContext.image_id1 = res.data.data.id;
+				setUploadData({
+					...uploadData,
+					image_url: res.data.data.url,
+					image_id: res.data.data.id,
+				});
 			},
 			(err) => {
-				console.log(PhotoEditContext.image_id1);
+				console.log(err);
 			}
 		);
 	};
 
 	const handleColorChange = (color) => {
-		setRremovebg({ ...removebg, bg_color: color.hex });
+		setUploadData({ ...uploadData, bg_color: color.hex });
 	};
 
 	return (
@@ -76,7 +46,7 @@ export const RemoveBackground = () => {
 				spacing={1}
 			>
 				<SketchPicker
-					color={removebg.bg_color}
+					color={PhotoEditContext.bg_color}
 					onChangeComplete={handleColorChange}
 				/>
 				<Stack
@@ -93,7 +63,7 @@ export const RemoveBackground = () => {
 			<Typography gutterBottom>Image Blur</Typography>
 			<AppSlider element="bg_blur" />
 
-			<Button variant="text" component="label">
+			{/* <Button variant="text" component="label">
 				Upload Background
 				<input
 					id="fileUpolad"
@@ -103,7 +73,7 @@ export const RemoveBackground = () => {
 					multiple
 					style={{ visibility: "hidden", position: "absolute" }}
 				/>
-			</Button>
+			</Button> */}
 
 			{/* backgroound width height crop  bg_width, bg_height*/}
 

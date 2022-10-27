@@ -4,21 +4,21 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { PhotoEditContext } from "./uploadBox";
+import { PhotoEditContext } from "../Services/axiosCalls";
 
 export default function Dropdownselect({ type }) {
 	const [value, setValue] = React.useState("");
+	const { uploadData, setUploadData } = React.useContext(PhotoEditContext);
 
 	const handleChange = (event) => {
 		setValue(event.target.value);
-		PhotoEditContext[type] = event.target.value;
+		setUploadData({ ...uploadData, [type]: event.target.value });
 	};
 
 	const data = {
 		format: ["JPG", "PNG", "TIFF", "WEBP"],
 		scale: ["fit", "fill"],
 		output_type: ["cutout", "mask"],
-    
 	};
 
 	return (
@@ -35,7 +35,11 @@ export default function Dropdownselect({ type }) {
 					onChange={handleChange}
 				>
 					{data[type].map((format) => {
-						return <MenuItem value={format}>{format.toUpperCase()}</MenuItem>;
+						return (
+							<MenuItem key={format} value={format}>
+								{format.toUpperCase()}
+							</MenuItem>
+						);
 					})}
 				</Select>
 			</FormControl>

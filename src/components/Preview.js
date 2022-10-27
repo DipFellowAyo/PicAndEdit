@@ -4,10 +4,13 @@ import { doables } from "../Pages/createPage";
 import Stack from "@mui/material/Stack";
 import { RemoveBackground } from "./RemoveBackground";
 import Divider from "@mui/material/Divider";
-import { PhotoEditContext } from "./uploadBox";
+import { PhotoEditContext } from "../Services/axiosCalls";
 
 export default function Preview() {
-	const { file, setFile } = useContext(PhotoEditContext);
+	const { uploadData } = useContext(PhotoEditContext);
+
+	const previewImage =
+		uploadData.image_url ?? URL.createObjectURL(uploadData.image);
 
 	return (
 		<Stack
@@ -21,14 +24,12 @@ export default function Preview() {
 				sx={{
 					width: "100%",
 					height: "600px",
-					background: `url(${file})`,
+					background: `url(${previewImage})`,
 					backgroundSize: "contain",
 					backgroundRepeat: "no-repeat",
 					backgroundPosition: "center",
 				}}
-			>
-				{/* <img src={file} height="100%" width="100%" /> */}
-			</Box>
+			></Box>
 
 			<Stack
 				direction="row"
