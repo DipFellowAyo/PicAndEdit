@@ -16,7 +16,6 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MailIcon from "@mui/icons-material/Mail";
-import FileUploadIcon from "@mui/icons-material/FileUpload";
 import WallpaperIcon from "@mui/icons-material/Wallpaper";
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import CompareIcon from "@mui/icons-material/Compare";

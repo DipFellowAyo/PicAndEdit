@@ -12,15 +12,7 @@ export const navMapper = {
 const Nav = () => {
 	return (
 		<Stack direction="row" justifyContent="space-around">
-			<Link
-				to="/"
-				style={{
-					textDecoration: "none",
-					color: "inherit",
-				}}
-			>
-				<HeroImg />
-			</Link>
+			<HeroImg />
 
 			<Link
 				to="/"
