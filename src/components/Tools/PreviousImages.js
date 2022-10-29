@@ -17,7 +17,7 @@ export default function PreviousImages() {
 			}}
 		>
 			<Typography variant="h5" gutterBottom noWrap={true} color="grey" m={3}>
-				Your Images
+				Your History...
 			</Typography>
 			<Grid
 				container
@@ -41,10 +41,11 @@ export default function PreviousImages() {
 							xs={2}
 							sx={{
 								width: "100%",
-								border: "1px solid black",
+								margin: ".5rem",
+								borderRadius: "1rem",
 								height: "100px",
 								background: `url(${image})`,
-								backgroundColor: "black",
+								backgroundColor: "#e8e8e8",
 								backgroundSize: "contain",
 								backgroundRepeat: "no-repeat",
 								backgroundPosition: "center",
@@ -53,7 +54,7 @@ export default function PreviousImages() {
 								alignItems: "center",
 								cursor: "pointer",
 								"&:hover": {
-									backgroundColor: "grey",
+									boxShadow: "2px 2px 2px 1px rgba(0, 0, 0, 0.2)",
 								},
 							}}
 						/>

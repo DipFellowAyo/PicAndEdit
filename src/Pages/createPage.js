@@ -141,7 +141,14 @@ export default function Create() {
 					</IconButton>
 				</Toolbar>
 			</AppBar>
-			<Drawer variant="permanent" open={open}>
+			<Drawer
+				variant="permanent"
+				open={open}
+				sx={{
+					background: "#0000",
+				}}
+				PaperProps={{ background: "#000000" }}
+			>
 				<DrawerHeader>
 					<IconButton onClick={handleDrawerClose}>
 						{theme.direction === "rtl" ? (

@@ -40,11 +40,7 @@ const Button = (prop) => {
 	const classes = useStyles();
 
 	return (
-		<div className={classes.buttonContainer}
-      sx={{
-        
-      }}
-    >
+		<div className={classes.buttonContainer} sx={{}}>
 			<h5>{prop.title}</h5>
 		</div>
 	);
